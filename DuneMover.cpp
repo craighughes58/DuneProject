@@ -7,6 +7,7 @@
 // a certain price threshold
 *****************************************************************************/
 #include<iostream>
+#include <iomanip>
 #include<vector>
 #include <string.h>
 #include <string>
@@ -27,7 +28,7 @@ const string DIVIDER = "\n------------------------------------------------------
 
 int main(){
 
-float desiredIntake,duration,nextVal;
+float desiredIntake,duration,nextVal,costOffset;
 
 int passengerCount,totalPrices,buggyCount;
 
@@ -38,6 +39,7 @@ vector<int> passengerMakeup;
 
 cout << "\n\n WELCOME TO DUNE MOVER 2024\n\n" << endl;
 convertStringToFloat("\n How much money do you want to make? ",desiredIntake);
+convertStringToFloat("\n What are the cost of operations that you are trying to offset? ",costOffset);
 convertStringToFloat("\n What is the anticipated duration of a dune ride in hours?" ,duration);
 convertStringToInt("\n How many passengers can fit in a dune buggy? ",passengerCount);
 convertStringToInt("\n How many dune buggies are operational? ",buggyCount);
@@ -61,17 +63,19 @@ for(int i = 0; i < totalPrices; i++)
 
 
 //run calculations
-RunCalculations(desiredIntake,prices,duration,passengerCount,buggyCount,passengerMakeup);
+RunCalculations(desiredIntake + costOffset,prices,duration,passengerCount,buggyCount,passengerMakeup);
 //save values
 return 0;
 }
 
 
 void RunCalculations(int goalValue, vector<float> prices, float duration, int passengerCount, int activeBuggies, vector<int> passengerSetup){
-//GOAL: how much time it would take to make N money using X tickets in different variations of tickets
 int ticketsNeeded;
 int multipliedTickets; 
 float carSum;
+
+    cout << setprecision(2) << endl;
+
     //exaggerated simulation O(N)
     for(float i : prices)
     {
@@ -128,9 +132,7 @@ void convertStringToInt(string message, int &var){
 #pragma endregion
 
 #pragma region Checkers
-/// @brief 
-/// @param str 
-/// @return 
+
 bool check_float(string str) {
    bool foundDecimal = false;
    for (int i = 0; i < str.length(); i++){
@@ -148,9 +150,7 @@ bool check_float(string str) {
    return true;
 }
 
-/// @brief 
-/// @param str 
-/// @return 
+
 bool check_int(string str){
     for (int i = 0; i < str.length(); i++){
        //check for digit
