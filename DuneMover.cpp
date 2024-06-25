@@ -74,13 +74,11 @@ int ticketsNeeded;
 int multipliedTickets; 
 float carSum;
 
-    cout << setprecision(2) << endl;
-
     //exaggerated simulation O(N)
     for(float i : prices)
     {
         ticketsNeeded =ceilf(goalValue/i);
-    	cout<< DIVIDER <<"It would take " << to_string(ticketsNeeded) << " tickets worth $" << to_string(i) << 
+    	cout<< setprecision(2) <<  DIVIDER <<"It would take " << to_string(ticketsNeeded) << " tickets worth $" << to_string(i) << 
         " to reach your goal. \nThis would take " <<  to_string(ceilf(ticketsNeeded/ passengerCount))  << " full buggy rides to sell this many tickets"
         << "\nIt would take " <<  to_string(ceilf((((ticketsNeeded/ passengerCount)*duration)/activeBuggies))) << " Hours to complete this with " << to_string(activeBuggies) << " active buggies." << endl;
     }
@@ -90,7 +88,7 @@ float carSum;
     carSum = Sum_Vector_Float(prices);
     ticketsNeeded = ceilf(goalValue / carSum);
     multipliedTickets = prices.size() * ticketsNeeded;
-    cout<< DIVIDER <<"It would take " << to_string(ticketsNeeded) << " of each ticket to reach your goal. \n This would take " << to_string(ceilf(multipliedTickets/ passengerCount))  << " full buggy rides to sell this many tickets."
+    cout<< setprecision(2) <<  DIVIDER <<"It would take " << to_string(ticketsNeeded) << " of each ticket to reach your goal. \n This would take " << to_string(ceilf(multipliedTickets/ passengerCount))  << " full buggy rides to sell this many tickets."
         << "\nIt would take " <<  to_string(ceilf((((multipliedTickets/ passengerCount)*duration)/activeBuggies))) << " Hours to complete this with " << to_string(activeBuggies) << " active buggies." << endl;
     
 
@@ -100,7 +98,7 @@ float carSum;
     for(int i = 0; i < prices.size();i++){
         carSum += prices[i] * passengerSetup[i];
     }
-    cout << DIVIDER <<"One car with your projected setup will make $" << to_string(carSum) << ".\nIt would take "<< to_string(ceilf(goalValue/carSum)) << 
+    cout <<  setprecision(2) <<  DIVIDER <<"One car with your projected setup will make $" << to_string(carSum) << ".\nIt would take "<< to_string(ceilf(goalValue/carSum)) << 
     " full buggy rides to reach your goal.\n" << "It would take " << to_string(ceilf(((goalValue/carSum) * duration)/activeBuggies))<< " hours to reach your goal with this setup and " <<
      to_string(activeBuggies) << " active buggies." << endl;
 
